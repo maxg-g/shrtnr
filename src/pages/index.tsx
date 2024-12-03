@@ -1,115 +1,117 @@
-import Image from "next/image";
+import { Copy, Trash } from "lucide-react";
 import localFont from "next/font/local";
+import { useRef, useState } from "react";
+import { Toaster, toast } from "sonner";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
+
+const recientUrls = [
+  {
+    shortUrl: "shrtnr.app/D0rgpMzo",
+    longUrl: "https://www.google.com/search?sca_esv=ff698a007cca6e58&q=underneath&sa=X&ved=2ahUKEwicqoToqYKKAxVMCbkGHfpBMI4Q7xYoAHoECA4QAQ&biw=1440&bih=794&dpr=2"
+  }, {
+    shortUrl: "shrtnr.app/D0rgpMzo",
+    longUrl: "https://www.google.com/search?sca_esv=ff698a007cca6e58&q=underneath&sa=X&ved=2ahUKEwicqoToqYKKAxVMCbkGHfpBMI4Q7xYoAHoECA4QAQ&biw=1440&bih=794&dpr=2"
+  }, {
+    shortUrl: "shrtnr.app/D0rgpMzo",
+    longUrl: "https://www.google.com/search?sca_esv=ff698a007cca6e58&q=underneath&sa=X&ved=2ahUKEwicqoToqYKKAxVMCbkGHfpBMI4Q7xYoAHoECA4QAQ&biw=1440&bih=794&dpr=2"
+  }, {
+    shortUrl: "shrtnr.app/D0rgpMzo",
+    longUrl: "https://www.google.com/search?sca_esv=ff698a007cca6e58&q=underneath&sa=X&ved=2ahUKEwicqoToqYKKAxVMCbkGHfpBMI4Q7xYoAHoECA4QAQ&biw=1440&bih=794&dpr=2"
+  }, {
+    shortUrl: "shrtnr.app/D0rgpMzo",
+    longUrl: "https://www.google.com/search?sca_esv=ff698a007cca6e58&q=underneath&sa=X&ved=2ahUKEwicqoToqYKKAxVMCbkGHfpBMI4Q7xYoAHoECA4QAQ&biw=1440&bih=794&dpr=2"
+  }, {
+    shortUrl: "shrtnr.app/D0rgpMzo",
+    longUrl: "https://www.google.com/search?sca_esv=ff698a007cca6e58&q=underneath&sa=X&ved=2ahUKEwicqoToqYKKAxVMCbkGHfpBMI4Q7xYoAHoECA4QAQ&biw=1440&bih=794&dpr=2"
+  }, {
+    shortUrl: "shrtnr.app/D0rgpMzo",
+    longUrl: "https://www.google.com/search?sca_esv=ff698a007cca6e58&q=underneath&sa=X&ved=2ahUKEwicqoToqYKKAxVMCbkGHfpBMI4Q7xYoAHoECA4QAQ&biw=1440&bih=794&dpr=2"
+  }, {
+    shortUrl: "shrtnr.app/D0rgpMzo",
+    longUrl: "https://www.google.com/search?sca_esv=ff698a007cca6e58&q=underneath&sa=X&ved=2ahUKEwicqoToqYKKAxVMCbkGHfpBMI4Q7xYoAHoECA4QAQ&biw=1440&bih=794&dpr=2"
+  },
+]
+
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
 });
 
-export default function Home() {
-  return (
-    <div
-      className={`${geistSans.variable} ${geistMono.variable} grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
-    >
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/pages/index.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+function isValidURL(str: string) {
+  const pattern = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/\S*)?$/;
+  return pattern.test(str);
+}
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+
+export default function Home() {
+  const [inputUrl, setInputUrl] = useState('');
+  const urlRef = useRef<HTMLAnchorElement>(null);
+
+  const handleShortenLink = () => {
+    if (inputUrl === "") return;
+    if (!isValidURL(inputUrl)) {
+      toast.error('Invalid URL');
+      return;
+    };
+  }
+
+  const handleCopy = () => {
+    if (urlRef.current) {
+      const text = urlRef.current.innerText;
+
+      navigator.clipboard.writeText(text)
+        .then(() => toast.success('Successfuly copied'))
+        .catch(() => toast.error('Something went wrong'));
+    }
+  }
+
+  return (
+    <main className={`max-w-lg m-auto min-h-svh ${geistMono.variable} font-[family-name:var(--font-geist-mono)]`}>
+      <Toaster />
+
+      <header>
+        <h1 className="pt-16 pb-6 text-center text-6xl font-bold">shrtnr</h1>
+        <p className="text-center pb-12 text-balance">transform long links into sleek, shareable URLs in a snap. <mark>a fast and simple link shortener.</mark></p>
+      </header>
+
+      <section>
+        <input
+          className="border-black border-t-2 border-x-2  w-[100%] h-16 px-4 text-center focus:outline-none focus:bg-gray-50 transform-all"
+          placeholder="https://long-link-goes-here.com"
+          value={inputUrl}
+          onChange={(e) => setInputUrl(e.target.value.trim())}
+        />
+
+        <div className="h-16 w-[100%] flex justify-center">
+          <button
+            onClick={handleShortenLink}
+            className="w-full font-bold text-white border-2 border-black bg-black hover:bg-black/50 transition-colors">
+            short it 🔗
+          </button>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+
+      <section className="mb-16">
+        {
+          recientUrls.map(({ shortUrl, longUrl }) =>
+            <div
+              key={shortUrl}
+              className="h-20 w-[100%] px-4 bg-gray-50 flex place-items-center justify-between gap-8 border-black/10 border-b border-x border-dashed"
+            >
+              <div className="flex flex-col w-[80%]">
+                <a ref={urlRef} href={`${shortUrl}`} className="truncate">{shortUrl}</a>
+                <a href={`${longUrl}`} className="truncate text-gray-400 text-xs">{longUrl}</a>
+              </div>
+
+              <div className="flex flex-row gap-4">
+                <button className="text-black hover:scale-95 hover:text-black/50 transition-all" onClick={handleCopy}><Copy size={22} strokeWidth={1.2} absoluteStrokeWidth /></button>
+                <button className="text-black hover:scale-95 hover:text-black/50 transition-all"><Trash size={22} strokeWidth={1.2} absoluteStrokeWidth /></button>
+              </div>
+            </div>
+          )
+        }
+      </section>
+    </main>
   );
 }
