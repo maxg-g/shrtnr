@@ -1,36 +1,37 @@
-import { Copy, Trash } from "lucide-react";
+// import { Copy, Trash } from "lucide-react";
 import localFont from "next/font/local";
-import { useRef, useState } from "react";
+// import { useRef, useState } from "react";
+import { useState } from "react";
 import { Toaster, toast } from "sonner";
 
 
-const recientUrls = [
-  {
-    shortUrl: "shrtnr.app/D0rgpMzo",
-    longUrl: "https://www.google.com/search?sca_esv=ff698a007cca6e58&q=underneath&sa=X&ved=2ahUKEwicqoToqYKKAxVMCbkGHfpBMI4Q7xYoAHoECA4QAQ&biw=1440&bih=794&dpr=2"
-  }, {
-    shortUrl: "shrtnr.app/D0rgpMzo",
-    longUrl: "https://www.google.com/search?sca_esv=ff698a007cca6e58&q=underneath&sa=X&ved=2ahUKEwicqoToqYKKAxVMCbkGHfpBMI4Q7xYoAHoECA4QAQ&biw=1440&bih=794&dpr=2"
-  }, {
-    shortUrl: "shrtnr.app/D0rgpMzo",
-    longUrl: "https://www.google.com/search?sca_esv=ff698a007cca6e58&q=underneath&sa=X&ved=2ahUKEwicqoToqYKKAxVMCbkGHfpBMI4Q7xYoAHoECA4QAQ&biw=1440&bih=794&dpr=2"
-  }, {
-    shortUrl: "shrtnr.app/D0rgpMzo",
-    longUrl: "https://www.google.com/search?sca_esv=ff698a007cca6e58&q=underneath&sa=X&ved=2ahUKEwicqoToqYKKAxVMCbkGHfpBMI4Q7xYoAHoECA4QAQ&biw=1440&bih=794&dpr=2"
-  }, {
-    shortUrl: "shrtnr.app/D0rgpMzo",
-    longUrl: "https://www.google.com/search?sca_esv=ff698a007cca6e58&q=underneath&sa=X&ved=2ahUKEwicqoToqYKKAxVMCbkGHfpBMI4Q7xYoAHoECA4QAQ&biw=1440&bih=794&dpr=2"
-  }, {
-    shortUrl: "shrtnr.app/D0rgpMzo",
-    longUrl: "https://www.google.com/search?sca_esv=ff698a007cca6e58&q=underneath&sa=X&ved=2ahUKEwicqoToqYKKAxVMCbkGHfpBMI4Q7xYoAHoECA4QAQ&biw=1440&bih=794&dpr=2"
-  }, {
-    shortUrl: "shrtnr.app/D0rgpMzo",
-    longUrl: "https://www.google.com/search?sca_esv=ff698a007cca6e58&q=underneath&sa=X&ved=2ahUKEwicqoToqYKKAxVMCbkGHfpBMI4Q7xYoAHoECA4QAQ&biw=1440&bih=794&dpr=2"
-  }, {
-    shortUrl: "shrtnr.app/D0rgpMzo",
-    longUrl: "https://www.google.com/search?sca_esv=ff698a007cca6e58&q=underneath&sa=X&ved=2ahUKEwicqoToqYKKAxVMCbkGHfpBMI4Q7xYoAHoECA4QAQ&biw=1440&bih=794&dpr=2"
-  },
-]
+// const recientUrls = [
+//   {
+//     shortUrl: "shrtnr.app/D0rgpMzo",
+//     longUrl: "https://www.google.com/search?sca_esv=ff698a007cca6e58&q=underneath&sa=X&ved=2ahUKEwicqoToqYKKAxVMCbkGHfpBMI4Q7xYoAHoECA4QAQ&biw=1440&bih=794&dpr=2"
+//   }, {
+//     shortUrl: "shrtnr.app/D0rgpMzo",
+//     longUrl: "https://www.google.com/search?sca_esv=ff698a007cca6e58&q=underneath&sa=X&ved=2ahUKEwicqoToqYKKAxVMCbkGHfpBMI4Q7xYoAHoECA4QAQ&biw=1440&bih=794&dpr=2"
+//   }, {
+//     shortUrl: "shrtnr.app/D0rgpMzo",
+//     longUrl: "https://www.google.com/search?sca_esv=ff698a007cca6e58&q=underneath&sa=X&ved=2ahUKEwicqoToqYKKAxVMCbkGHfpBMI4Q7xYoAHoECA4QAQ&biw=1440&bih=794&dpr=2"
+//   }, {
+//     shortUrl: "shrtnr.app/D0rgpMzo",
+//     longUrl: "https://www.google.com/search?sca_esv=ff698a007cca6e58&q=underneath&sa=X&ved=2ahUKEwicqoToqYKKAxVMCbkGHfpBMI4Q7xYoAHoECA4QAQ&biw=1440&bih=794&dpr=2"
+//   }, {
+//     shortUrl: "shrtnr.app/D0rgpMzo",
+//     longUrl: "https://www.google.com/search?sca_esv=ff698a007cca6e58&q=underneath&sa=X&ved=2ahUKEwicqoToqYKKAxVMCbkGHfpBMI4Q7xYoAHoECA4QAQ&biw=1440&bih=794&dpr=2"
+//   }, {
+//     shortUrl: "shrtnr.app/D0rgpMzo",
+//     longUrl: "https://www.google.com/search?sca_esv=ff698a007cca6e58&q=underneath&sa=X&ved=2ahUKEwicqoToqYKKAxVMCbkGHfpBMI4Q7xYoAHoECA4QAQ&biw=1440&bih=794&dpr=2"
+//   }, {
+//     shortUrl: "shrtnr.app/D0rgpMzo",
+//     longUrl: "https://www.google.com/search?sca_esv=ff698a007cca6e58&q=underneath&sa=X&ved=2ahUKEwicqoToqYKKAxVMCbkGHfpBMI4Q7xYoAHoECA4QAQ&biw=1440&bih=794&dpr=2"
+//   }, {
+//     shortUrl: "shrtnr.app/D0rgpMzo",
+//     longUrl: "https://www.google.com/search?sca_esv=ff698a007cca6e58&q=underneath&sa=X&ved=2ahUKEwicqoToqYKKAxVMCbkGHfpBMI4Q7xYoAHoECA4QAQ&biw=1440&bih=794&dpr=2"
+//   },
+// ]
 
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
@@ -46,7 +47,7 @@ function isValidURL(str: string) {
 
 export default function Home() {
   const [inputUrl, setInputUrl] = useState('');
-  const urlRef = useRef<HTMLAnchorElement>(null);
+  // const urlRef = useRef<HTMLAnchorElement>(null);
 
   const handleShortenLink = () => {
     if (inputUrl === "") return;
@@ -56,15 +57,15 @@ export default function Home() {
     };
   }
 
-  const handleCopy = () => {
-    if (urlRef.current) {
-      const text = urlRef.current.innerText;
+  // const handleCopy = () => {
+  //   if (urlRef.current) {
+  //     const text = urlRef.current.innerText;
 
-      navigator.clipboard.writeText(text)
-        .then(() => toast.success('Successfuly copied'))
-        .catch(() => toast.error('Something went wrong'));
-    }
-  }
+  //     navigator.clipboard.writeText(text)
+  //       .then(() => toast.success('Successfuly copied'))
+  //       .catch(() => toast.error('Something went wrong'));
+  //   }
+  // }
 
   return (
     <main className={`max-w-lg m-auto min-h-svh ${geistMono.variable} font-[family-name:var(--font-geist-mono)]`}>
@@ -92,7 +93,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mb-16">
+      {/* <section className="mb-16">
         {
           recientUrls.map(({ shortUrl, longUrl }) =>
             <div
@@ -111,7 +112,7 @@ export default function Home() {
             </div>
           )
         }
-      </section>
+      </section> */}
     </main>
   );
 }
